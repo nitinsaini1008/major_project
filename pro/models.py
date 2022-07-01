@@ -26,22 +26,22 @@ class buyed(models.Model):
 
 class cart(models.Model):
 	name=models.ForeignKey(User,on_delete=models.CASCADE, unique=True)
-	cost=models.IntegerField()
-	item=models.ManyToManyField(buyed)
+	cost=models.IntegerField(default=0)
+	item=models.ManyToManyField(buyed, null=True, blank=True)
 	datetime=models.DateTimeField(auto_now_add=True)
 
 class order_count(models.Model):
 	item=models.ForeignKey(items,on_delete=models.CASCADE)
-	item_count=models.IntegerField()
+	item_count=models.IntegerField(default=0)
 class allorder(models.Model):
 	name=models.ForeignKey(User,on_delete=models.CASCADE)
-	cost=models.IntegerField()
+	cost=models.IntegerField(default=0)
 	datetime=models.DateTimeField(auto_now_add=True)	
 	address=models.CharField(max_length=1000)
-	item=models.ManyToManyField(order_count)
+	item=models.ManyToManyField(order_count, blank=True, null=True)
 
 class re_views(models.Model):
-	point=models.IntegerField()
+	point=models.IntegerField(default=0)
 	name=models.ForeignKey(User,on_delete=models.CASCADE)
 	product=models.ForeignKey(items,on_delete=models.CASCADE)
 	datetime=models.DateTimeField(auto_now_add=True)
