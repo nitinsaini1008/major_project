@@ -96,8 +96,10 @@ def log_in(request):
 				c=cart(name=request.user,cost=0)
 				c.save()
 			return redirect("main_page")
+		else:
+			return render(request,'log_in.html',{'msg':"invalid username and password"})
 
-	return render(request,'log_in.html',{'msg':"invalid user name and password"})
+	return render(request,'log_in.html',{'msg':""})
 
 def sign_in(request):
 	return render(request,'sign_in.html')
@@ -240,13 +242,13 @@ def result(request):
 	url = "https://www.googleapis.com/oauth2/v2/userinfo?access_token="+token
 	r = requests.get(url)
 	data = r.json()
-	print( data['email'], data['name'], data['id'])
+	# print( data['email'], data['name'], data['id'])
 
 	try:
 		u = User.objects.get(username=data['email'])
 		u = User.objects.filter(email = data['email']).first()
 	except:
-		u=User.objects.create_user(username=data['email'],email=data['email'],password=data['id'],first_name=data['name'],last_name="")
+		u=User.objects.create_user(username=data['email'],email=data['email'],password=data['id'],first_name=data['email'].split("@")[0],last_name="")
 		u.set_password(data['id'])
 		u.save()
 	auth.login(request,u)

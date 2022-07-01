@@ -52,9 +52,9 @@
 
 <form  method="post">
 	{% csrf_token %}
-	<h1>Enter your details</h1>
-	<input class="form-control" type="text" name="username" placeholder="username"><br>
-	<input class="form-control" type="password" name="passwd" placeholder="password"><br>
+	<h1>Log In</h1>
+	<input class="form-control" type="text" name="username" placeholder="username" required><br>
+	<input class="form-control" type="password" name="passwd" placeholder="password" required><br>
 	<input class="btn btn-primary" type="submit" name="submit"><br>
 </form>
 </div>
@@ -67,7 +67,7 @@
 	                                <div class="col-md-12">
 	                                  <!-- <a  href="#"> Signup Using Google</a> -->
 
-	                                  <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&include_granted_scopes=true&state=1234567890&redirect_uri=http://127.0.0.1:8000/result&client_id=296287171867-ioqtsh35387i6tsv37dbo0te2d965tbt.apps.googleusercontent.com"><img src="https://img.icons8.com/color/16/000000/google-logo.png">Signup Using Google</a>
+	                                  <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&include_granted_scopes=true&state=1234567890&redirect_uri=http://127.0.0.1:8000/result&client_id=296287171867-ioqtsh35387i6tsv37dbo0te2d965tbt.apps.googleusercontent.com"><img src="https://img.icons8.com/color/16/000000/google-logo.png">LogIn Using Google</a>
 
 	                                </div>
 	                            </div>

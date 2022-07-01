@@ -57,16 +57,16 @@
 		<form method="post">
 			{% csrf_token %}
       <div class="form-group">
-        <input type="text" name="address" class="form-control" aria-describedby="emailHelp" placeholder="Enter house No/area/locality">
+        <input type="text" name="address" class="form-control" aria-describedby="emailHelp" placeholder="Enter house No/area/locality" required>
       </div>
       <div class="form-group">
-        <input type="text" name="city" class="form-control" aria-describedby="emailHelp" placeholder="Enter city">
+        <input type="text" name="city" class="form-control" aria-describedby="emailHelp" placeholder="Enter city" required>
       </div>
       <div class="form-group">
-        <input type="text" name="state" class="form-control" aria-describedby="emailHelp" placeholder="Enter state">
+        <input type="text" name="state" class="form-control" aria-describedby="emailHelp" placeholder="Enter state" required>
       </div>
       <div class="form-group">
-        <input type="text" name="country" class="form-control" aria-describedby="emailHelp" placeholder="Enter Country">
+        <input type="text" name="country" class="form-control" aria-describedby="emailHelp" placeholder="Enter Country" required>
       </div>
 			<input type="submit" class="btn btn-primary" name="submit">
 		</form>
