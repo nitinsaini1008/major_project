@@ -53,6 +53,7 @@ def search_name(request):
 	
 @login_required
 def buy(request):
+	print(request.user.email)
 	idd=request.GET['id']
 	try:
 		print("hello_1")
