@@ -194,6 +194,14 @@ def send_mail(to, subject, text_content):
 	return True
 
 @login_required
+def clear_cart(request):
+	c = cart.objects.get(name=request.user)
+	c.item.clear()
+	c.cost = 0
+	c.save()
+	return redirect("my_cart")
+
+@login_required
 def pre_buy(request):
 	c=cart.objects.get(name=request.user)
 	if request.method=='POST':
@@ -215,6 +223,7 @@ def pre_buy(request):
 		a.cost=xx
 		a.save()
 		c.item.clear()
+		c.cost = 0
 		c.save()
 		try:
 			text_content = "<h1>Dear user your order has been placed and total cost is {}</h1>".format(str(xx))

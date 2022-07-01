@@ -16,7 +16,7 @@ class products(models.Model):
 	desc=models.CharField(max_length=500)
 	photo=models.ImageField(upload_to='itmephotos')
 	datetime=models.DateTimeField(auto_now_add=True)
-	item=models.ManyToManyField(items)
+	item=models.ManyToManyField(items, null=True, blank=True)
 
 	def total_item(self):
 		return self.item.count()

@@ -76,11 +76,17 @@
     </li>
     {% endfor %}
   </ul>
+  <div class="container" style="text-align: center;">
+    <form action="/clear_cart">
+      <button type="submit" class="btn-primary">clear_cart</button>
+    </form>
+  </div>
   <div class="container">
     <form action="pre_buy">
       <button style="margin-bottom: 20%" type="submit" class="btn-lg btn-success btn-lg btn-block">Buy Now</button>
     </form>
   </div>
+
 </div>
 {% endif %}
 
