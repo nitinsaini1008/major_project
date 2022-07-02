@@ -115,11 +115,14 @@ def post_sign(request):
 		pass
 	x = random.randint(1000,99999)
 	text_content = "<h1>Dear User your One Time Password is {}</h1>".format(x)
-	email=EmailMultiAlternatives(
-            "testing",text_content,"coder.kolawat@gmail.com",[email_id]
-        )
-	email.attach_alternative(text_content, "text/html")
-	email.send()
+	try:
+		email=EmailMultiAlternatives(
+	            "testing",text_content,"coder.kolawat@gmail.com",[email_id]
+	        )
+		email.attach_alternative(text_content, "text/html")
+		email.send()
+	except:
+		pass
 	return HttpResponse(str(x))
 
 def sign_2(request):
