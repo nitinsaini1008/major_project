@@ -1,0 +1,8 @@
+ .custom {
+    display:flex;
+    justify-content:center;
+    width: 10px !important;
+    height : 30px !important;
+    text-align: center;
+    line-height: 28px;
+}
