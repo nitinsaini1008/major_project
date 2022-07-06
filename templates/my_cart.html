@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -68,9 +69,9 @@
           <!-- <h1 class="card-text">*{{i.total_item}}.</h1> -->
           <h1 class="card-text">Rs.={{i.item.price}}</h1>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary">less</a>
+            <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary custom">-</a>
             <h1 class="card-text">{{i.total_item}}.</h1>
-             <a href="/buy?id={{i.item.id}}" class="btn btn-primary">Add</a>
+             <a href="/buy?id={{i.item.id}}" class="btn btn-primary custom">+</a>
           </div>
         </div>
     </li>
