@@ -5,7 +5,7 @@ class items(models.Model):
 	name=models.CharField(max_length=200)
 	price=models.IntegerField()
 	quantity=models.IntegerField()
-	desc=models.CharField(max_length=500)
+	desc=models.TextField()
 	type_of_item=models.CharField(max_length=100)
 	photo=models.ImageField(upload_to='itmephotos')
 	datetime=models.DateTimeField(auto_now_add=True)

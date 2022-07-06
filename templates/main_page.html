@@ -70,15 +70,15 @@
 <div class="container flex d-flex flex-row mb-3 grid-container">
 	{% for i in d %}
 		<div class="card grid-item" style="width: 50%;">
-      <div style="width: 50mm; height: 50mm;">
-        <img src="media/{{i.photo}}" class="card-img-top" alt="...">
+      <div style="width: 50mm; height: 70mm;">
+        <img style="width: 100mm; height: 67mm;" src="media/{{i.photo}}" class="card-img-top" alt="...">
       </div>
 		  
 		  <div class="card-body">
 		    <h5 class="card-title">{{i.name}}</h5>
 		    <p class="card-text">{{i.desc}}.</p>
 		    <p class="card-text">{{i.item}}.</p>
-		    <a href="/sub_page?search={{i.name}}" class="btn btn-primary">{{ i.total_item }}items</a>
+		    <a href="/sub_page?search={{i.name}}" class="btn btn-primary">Shop</a>
 		  </div>
 		</div>
 	{% endfor %}
