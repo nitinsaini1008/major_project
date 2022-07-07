@@ -252,7 +252,7 @@ def pre_buy(request):
 		c.save()
 		try:
 			text_content = "<h1>Dear user your order has been placed and total cost is {}</h1>".format(str(xx))
-			send_mail([request.user.email], "Order has been placed!", text_content)
+			# send_mail([request.user.email], "Order has been placed!", text_content)
 		except:
 			print("Mail send failed--------\n\n")
 		return redirect('account')

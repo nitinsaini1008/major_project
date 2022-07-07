@@ -69,9 +69,9 @@
           <!-- <h1 class="card-text">*{{i.total_item}}.</h1> -->
           <h1 class="card-text">Rs.={{i.item.price}}</h1>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary custom">-</a>
-            <h1 class="card-text">{{i.total_item}}</h1>
-             <a href="/buy?id={{i.item.id}}" class="btn btn-primary custom">+</a>
+            <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary">-</a>
+            <h2 class="card-text">{{i.total_item}}</h2>
+             <a href="/buy?id={{i.item.id}}" class="btn btn-primary">+</a>
           </div>
         </div>
     </li>
