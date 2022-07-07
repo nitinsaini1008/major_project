@@ -17,7 +17,10 @@ def home(request):
 
 def main_page(request):
 	f=products.objects.all()
-	return render(request,'main_page.html',{'d':f})
+	l = 0
+	if(request.user.is_authenticated):
+		l=cart.objects.get(name=request.user).item.count()
+	return render(request,'main_page.html',{'d':f, "l": l})
 
 @login_required
 def save_reviews(request,id):
@@ -33,10 +36,13 @@ def save_reviews(request,id):
 	return redirect('/details/'+str(id))
 
 def details(request,id):
+	l = 0
+	if(request.user.is_authenticated):
+		l=cart.objects.get(name=request.user).item.count()
 	try:
 		i=items.objects.get(id=id)
 		r=re_views.objects.all().filter(product=i).order_by('-datetime')
-		return render(request,'details.html',{'i':i,'r':r})
+		return render(request,'details.html',{'i':i,'r':r, "l": l})
 	except:
 		return HttpResponse("No record found")
 		
@@ -44,12 +50,18 @@ def sub_page(request):
 	name=request.GET['search']
 	d=products.objects.get(name=name)
 	f=d.item.all()
-	return render(request,'sub_page.html',{'f':f})
+	l = 0
+	if(request.user.is_authenticated):
+		l=cart.objects.get(name=request.user).item.count()
+	return render(request,'sub_page.html',{'f':f, "l": l})
 
 def search_name(request):
+	l = 0
+	if(request.user.is_authenticated):
+		l=cart.objects.get(name=request.user).item.count()
 	name=request.GET['search']
 	ans = items.objects.filter(Q(name__icontains=name)| Q(desc__icontains=name))
-	return render(request,'search_name.html',{'d':ans})
+	return render(request,'search_name.html',{'d':ans, "l": l})
 	
 @login_required
 def buy(request):
@@ -85,6 +97,9 @@ def buy(request):
 	return HttpResponse("an error accupied")
 
 def log_in(request):
+	l = 0
+	if(request.user.is_authenticated):
+		l=cart.objects.get(name=request.user).item.count()
 	if request.method=='POST':
 		username=request.POST['username']
 		passwd=request.POST['passwd']
@@ -98,9 +113,9 @@ def log_in(request):
 				c.save()
 			return redirect("main_page")
 		else:
-			return render(request,'log_in.html',{'msg':"invalid username and password"})
+			return render(request,'log_in.html',{'msg':"invalid username and password", "l": l})
 
-	return render(request,'log_in.html',{'msg':""})
+	return render(request,'log_in.html',{'msg':"", "l": l})
 
 def sign_in(request):
 	return render(request,'sign_in.html')
@@ -186,8 +201,11 @@ def about(request):
 
 @login_required
 def account(request):
+	l = 0
+	if(request.user.is_authenticated):
+		l=cart.objects.get(name=request.user).item.count()
 	d=allorder.objects.filter(name=request.user).order_by('-datetime')
-	return render(request,'account.html',{'d':d})
+	return render(request,'account.html',{'d':d, "l": l})
 
 def send_mail(to, subject, text_content):
 	email=EmailMultiAlternatives(
@@ -207,6 +225,9 @@ def clear_cart(request):
 
 @login_required
 def pre_buy(request):
+	l = 0
+	if(request.user.is_authenticated):
+		l=cart.objects.get(name=request.user).item.count()
 	c=cart.objects.get(name=request.user)
 	if request.method=='POST':
 		country=request.POST['country']
@@ -235,7 +256,7 @@ def pre_buy(request):
 		except:
 			print("Mail send failed--------\n\n")
 		return redirect('account')
-	return render(request,'pre_buy.html',{'c':c})
+	return render(request,'pre_buy.html',{'c':c, "l": l})
 
 def result(request):
 	code=request.GET['code']
