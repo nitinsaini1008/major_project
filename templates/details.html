@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -86,12 +87,11 @@
 </div>
 <ul class="list-unstyled">
   <br>
-  <h2>Ratings given by users:- </h2>
+  <h3>Ratings given by the users:- </h3>
   <div class="container border">
     {% for i in r %}
     <div class="card-body">
-      <h1 class="card-text">{{i.point}}</h1>
-      <h2 class="card-text">by:-{{i.name.username}}</h2>
+      <h3 class="card-text">{{i.point}} <img height="30px" width="30px" src="{% static 'star.png' %}"> by:-{{i.name.username}}</h3>
       <p class="card-text">{{i.msg}}.</p>
     </div>
     {% endfor %}

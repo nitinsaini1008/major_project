@@ -65,12 +65,12 @@
       <img src="media/{{i.item.photo}}" class="mr-3" alt="..." height="200" width="300">    
       <div class="card-body">
           <h5 class="card-title">{{i.item.name}}</h5>
-          <p class="card-text">{{i.item.desc}}.</p>
+          <p class="card-text">{{i.item.desc}}</p>
           <!-- <h1 class="card-text">*{{i.total_item}}.</h1> -->
           <h1 class="card-text">Rs.={{i.item.price}}</h1>
           <div class="btn-group" role="group" aria-label="Basic example">
             <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary custom">-</a>
-            <h1 class="card-text">{{i.total_item}}.</h1>
+            <h1 class="card-text">{{i.total_item}}</h1>
              <a href="/buy?id={{i.item.id}}" class="btn btn-primary custom">+</a>
           </div>
         </div>
