@@ -61,7 +61,7 @@ def search_name(request):
 	if(request.user.is_authenticated):
 		l=cart.objects.get(name=request.user).item.count()
 	name=request.GET['search']
-	ans = items.objects.filter(Q(name__icontains=name)| Q(desc__icontains=name))
+	ans = items.objects.filter(Q(name__icontains=name)| Q(desc__icontains=name) | Q(type_of_item__icontains=name))
 	return render(request,'search_name.html',{'d':ans, "l": l})
 	
 @login_required
@@ -133,7 +133,7 @@ def post_sign(request):
 	text_content = "<h1>Dear User your One Time Password is {}</h1>".format(x)
 	try:
 		email=EmailMultiAlternatives(
-	            "testing",text_content,"coder.kolawat@gmail.com",[email_id]
+	            "OTP",text_content,"coder.kolawat@gmail.com",[email_id]
 	        )
 		email.attach_alternative(text_content, "text/html")
 		email.send()
