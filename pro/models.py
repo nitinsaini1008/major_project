@@ -40,6 +40,7 @@ class allorder(models.Model):
 	address=models.CharField(max_length=1000)
 	item=models.ManyToManyField(order_count, blank=True, null=True)
 	mobile = models.CharField(max_length=20, blank=True, null=True)
+	paid = models.BooleanField(default=False)
 
 class re_views(models.Model):
 	point=models.IntegerField(default=0)
