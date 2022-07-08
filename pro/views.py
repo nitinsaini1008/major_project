@@ -12,6 +12,7 @@ import json
 from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q
 from django.conf import settings
+from .paytm import generate_checksum, verify_checksum
 
 def home(request):
 	return render(request,'home.html')
@@ -231,6 +232,7 @@ def pre_buy(request):
 		l=cart.objects.get(name=request.user).item.count()
 	c=cart.objects.get(name=request.user)
 	if request.method=='POST':
+		payment_mode = request.POST['payment-option']
 		country=request.POST['country']
 		state=request.POST['state']
 		city=request.POST['city']
@@ -257,7 +259,32 @@ def pre_buy(request):
 			# send_mail([request.user.email], "Order has been placed!", text_content)
 		except:
 			print("Mail send failed--------\n\n")
-		return redirect('account')
+		#Start-----------------
+		if payment_mode == "COD":
+			return redirect('account')
+		merchant_key = settings.PAYTM_SECRET_KEY
+		params = (
+			('MID', settings.PAYTM_MERCHANT_ID),
+			('ORDER_ID', str(123847987)+str(a.id)),
+			('CUST_ID', str(request.user.email)),
+			('TXN_AMOUNT', str(xx)),
+			('CHANNEL_ID', settings.PAYTM_CHANNEL_ID),
+			('WEBSITE', settings.PAYTM_WEBSITE),
+			# ('EMAIL', request.user.email),
+			# ('MOBILE_N0', '9911223388'),
+			('INDUSTRY_TYPE_ID', settings.PAYTM_INDUSTRY_TYPE_ID),
+			('CALLBACK_URL', 'http://127.0.0.1:8000/callback/'),
+			# ('PAYMENT_MODE_ONLY', 'NO'),
+		)
+
+		paytm_params = dict(params)
+		checksum = str("".join([str(1) for i in range(0, 108)]))
+		checksum = generate_checksum(paytm_params, merchant_key)
+
+		paytm_params['CHECKSUMHASH'] = checksum
+		return render(request, 'payment.html', context=paytm_params)
+
+		# return redirect('account')
 	return render(request,'pre_buy.html',{'c':c, "l": l})
 
 def result(request):
@@ -295,43 +322,15 @@ def result(request):
 		c.save()
 	return redirect('main_page')
 
-import braintree
-
-# Create your views here.
-
-gateway = braintree.BraintreeGateway(
-    braintree.Configuration(
-        braintree.Environment.Sandbox,
-        merchant_id="zkkj7vgg4tvyzg3j",
-        public_key="gf4j25ytykrkrpbr",
-        private_key="d108540c7fe7c5831bdfb6f35d2cb7d8"
-    )
-)
-
-
-
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
-@login_required
-def process_payment(request,id,token):
-    
-    
-    nonce_from_the_client = request.POST['paymentMethodNonce']
-    amount_from_the_client = request.POST['amount']
-
-    result = gateway.transaction.sale({
-        "amount":amount_from_the_client,
-        "payment_method_nonce":nonce_from_the_client,
-        "options": {
-            "submit_for_settlement": True
-        }
-    })
-
-    if result.is_success:
-        return HttpResponse(result.transaction.id, request.transaction.amount, result.transaction.amount)
-    else:
-        return HttpResponse("failed")
-
-def checkout(request):
-	return render(request, "checkout.html")
+def callback(request):
+	if request.method == 'POST':
+		received_data = dict(request.POST)
+		id = str(received_data['ORDERID'][0])[9:]
+		order = allorder.objects.get(id=id)
+		order.paid=True
+		order.save()
+		print(received_data['ORDERID'][0], "---------")
+		return redirect("account")

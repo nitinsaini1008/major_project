@@ -64,6 +64,11 @@
         	<h3 class="card-text">Total Costs:- Rs.:<b>{{i.cost}}</b></h3>
         	<h4 class="card-text">Order date:- {{i.datetime}}</h4>
         	<h3 class="card-text">Shipping Address:-{{i.address}}</h3>
+          {% if i.paid %}
+            <h3 class="card-text text-success"><b>Paid</b></h3>
+          {% else %}
+            <h3 class="card-text text-warning"><b>Payment Due</b></h3>
+          {% endif %}
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             See All Items
           </button>
