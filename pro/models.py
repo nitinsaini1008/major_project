@@ -39,6 +39,7 @@ class allorder(models.Model):
 	datetime=models.DateTimeField(auto_now_add=True)	
 	address=models.CharField(max_length=1000)
 	item=models.ManyToManyField(order_count, blank=True, null=True)
+	mobile = models.CharField(max_length=20, blank=True, null=True)
 
 class re_views(models.Model):
 	point=models.IntegerField(default=0)
