@@ -26,7 +26,7 @@
 
     <title>Hello, world!</title>
   </head>
-  <body>
+  <body class="bg-dark">
    	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">MyE-commerce</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,20 +67,22 @@
     </form>
   </div>
 </nav>
-<div class="container flex d-flex flex-row mb-3 grid-container">
+<div class="row justify-content-center m-auto container flex d-flex flex-row mb-3 grid-container">
 	{% for i in d %}
-		<div class="card grid-item" style="width: 50%;">
-      <div style="width: 50mm; height: 70mm;">
+    <div class="col-md-6 col-12">
+      <div class="card grid-item bg-info-light">
+      <div>
         <img style="width: 100mm; height: 67mm;" src="media/{{i.photo}}" class="card-img-top" alt="...">
       </div>
-		  
-		  <div class="card-body">
-		    <h5 class="card-title">{{i.name}}</h5>
-		    <p class="card-text">{{i.desc}}.</p>
-		    <p class="card-text">{{i.item.count}} Items Found</p>
-		    <a href="/sub_page?search={{i.name}}" class="btn btn-primary">Shop</a>
-		  </div>
-		</div>
+      
+      <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}.</p>
+        <p class="card-text">{{i.item.count}} Items Found</p>
+        <a href="/sub_page?search={{i.name}}" class="btn btn-primary">Shop</a>
+      </div>
+    </div>
+    </div>
 	{% endfor %}
 </div>
 
