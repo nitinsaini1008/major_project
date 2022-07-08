@@ -11,6 +11,7 @@ import requests
 import json
 from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q
+from django.conf import settings
 
 def home(request):
 	return render(request,'home.html')
@@ -234,8 +235,9 @@ def pre_buy(request):
 		state=request.POST['state']
 		city=request.POST['city']
 		address=request.POST['address']
+		mobile = request.POST['mobile']
 		ad=address+','+city+','+state+','+country
-		a=allorder(name=request.user,cost=0,address=ad)
+		a=allorder(name=request.user,cost=0,address=ad, mobile=str(mobile))
 		a.save()
 		xx=0
 		for i in c.item.all():
@@ -292,3 +294,44 @@ def result(request):
 		c=cart(name=request.user,cost=0)
 		c.save()
 	return redirect('main_page')
+
+import braintree
+
+# Create your views here.
+
+gateway = braintree.BraintreeGateway(
+    braintree.Configuration(
+        braintree.Environment.Sandbox,
+        merchant_id="zkkj7vgg4tvyzg3j",
+        public_key="gf4j25ytykrkrpbr",
+        private_key="d108540c7fe7c5831bdfb6f35d2cb7d8"
+    )
+)
+
+
+
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+@login_required
+def process_payment(request,id,token):
+    
+    
+    nonce_from_the_client = request.POST['paymentMethodNonce']
+    amount_from_the_client = request.POST['amount']
+
+    result = gateway.transaction.sale({
+        "amount":amount_from_the_client,
+        "payment_method_nonce":nonce_from_the_client,
+        "options": {
+            "submit_for_settlement": True
+        }
+    })
+
+    if result.is_success:
+        return HttpResponse(result.transaction.id, request.transaction.amount, result.transaction.amount)
+    else:
+        return HttpResponse("failed")
+
+def checkout(request):
+	return render(request, "checkout.html")
