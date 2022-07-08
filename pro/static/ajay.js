@@ -58,6 +58,6 @@ function ff2() {
 		a.click();
 	}
 	else{
-		var hh1=document.getElementById('hh1').innerHTML='fails';
+		var hh1=document.getElementById('hh1').innerHTML='Invalid OTP';
 	}
 }

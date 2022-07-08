@@ -62,16 +62,21 @@
   <ul class="list-unstyled">
       {% for i in c.item.all %}
     <li class="media border">
-      <img src="media/{{i.item.photo}}" class="mr-3" alt="..." height="200" width="300">    
+      <!-- <img src="media/{{i.item.photo}}" class="mr-3" alt="..." height="200" width="300">     -->
+      <div>
+        <img style="width: 100mm; height: 67mm;" src="media/{{i.item.photo}}" class="card-img-top" alt="...">
+      </div>
       <div class="card-body">
           <h5 class="card-title">{{i.item.name}}</h5>
           <p class="card-text">{{i.item.desc}}</p>
           <!-- <h1 class="card-text">*{{i.total_item}}.</h1> -->
           <h1 class="card-text">Rs.={{i.item.price}}</h1>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary">-</a>
+            <a href="/delete_cart?id={{i.item.id}}" class="btn-square-sm
+ btn btn-secondary">-</a>
             <h2 class="card-text">{{i.total_item}}</h2>
-             <a href="/buy?id={{i.item.id}}" class="btn btn-primary">+</a>
+             <a href="/buy?id={{i.item.id}}" class="btn-square-sm
+ btn btn-secondary">+</a>
           </div>
         </div>
     </li>
@@ -79,12 +84,12 @@
   </ul>
   <div class="container" style="text-align: center;">
     <form action="/clear_cart">
-      <button type="submit" class="btn-primary">clear_cart</button>
+      <button type="submit" class="btn btn-primary">clear_cart</button>
     </form>
-  </div>
-  <div class="container">
+  </div><br>
+  <div class="container" style="text-align: center;">
     <form action="pre_buy">
-      <button style="margin-bottom: 20%" type="submit" class="btn-lg btn-success btn-lg btn-block">Buy Now</button>
+      <button type="submit" class="btn btn-success">Buy Now</button>
     </form>
   </div>
 
