@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'build.css' %}">
 </head>
 <body style="text-align: center;">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,9 +52,9 @@
     </form>
   </div>
 </nav>
-<div class="container" style="width: 20%;">
+<!-- <div class="container" style="width: 20%;"> -->
 
-<form  method="post">
+<!-- <form  method="post">
 	{% csrf_token %}
 	<h1>Log In</h1>
 	<input class="form-control" type="text" name="username" placeholder="username" required><br>
@@ -58,19 +62,88 @@
 	<input class="btn btn-primary" type="submit" name="submit"><br>
 </form>
 </div>
-	{{msg}}
+	{{msg}} -->
 
-	<div class="or-container"><div class="line-separator"></div> <div class="or-label">or</div><div class="line-separator"></div></div>
+	<!-- <div class="or-container"><div class="line-separator"></div> <div class="or-label">or</div><div class="line-separator"></div></div> -->
 
 
-	                            <div class="row">
+	                            <!-- <div class="row">
 	                                <div class="col-md-12">
-	                                  <!-- <a  href="#"> Signup Using Google</a> -->
+	                                  <a  href="#"> Signup Using Google</a> -->
 
-	                                  <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&include_granted_scopes=true&state=1234567890&redirect_uri=http://127.0.0.1:8000/result&client_id=296287171867-ioqtsh35387i6tsv37dbo0te2d965tbt.apps.googleusercontent.com"><img src="https://img.icons8.com/color/16/000000/google-logo.png">LogIn Using Google</a>
+	                                  <!-- <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&include_granted_scopes=true&state=1234567890&redirect_uri=http://127.0.0.1:8000/result&client_id=296287171867-ioqtsh35387i6tsv37dbo0te2d965tbt.apps.googleusercontent.com"><img src="https://img.icons8.com/color/16/000000/google-logo.png">LogIn Using Google</a>
 
 	                                </div>
-	                            </div>
+	                            </div> -->
+                              
+                              <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+
+                              <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
+                                <h1 class="font-bold text-center text-2xl mb-5">Login</h1>
+                                <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+                                  <div class="px-5 py-7">
+                                    <form method="post">
+                                      {% csrf_token %}
+                                      <input type="hidden" name="csrfmiddlewaretoken" value="n2rv7D1fCjcPL7YxDfeHA5TETkUtQAKV6PNOZuuvxHG2O1W3efMmvugEKGqhEmQX">
+                                      <label class="font-semibold text-sm text-gray-600 pb-1 block">Email</label>
+                                      <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="email">
+                                      <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
+                                      <input type="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="password">
+                                      <button type="submit" class="transition duration-200 bg-gray-700 hover:bg-gray-800 focus:bg-gray-900 focus:shadow-sm focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+                                        <span class="inline-block mr-2">Login</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 inline-block">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                        </svg>
+                                      </button>
+                                    </form>
+                                  </div>
+                                  {{msg}}
+                                  <div class="py-5">
+                                    <div class="grid grid-cols-2 gap-1">
+                                      <div class="text-center sm:text-left whitespace-nowrap">
+                                        <button class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 inline-block align-text-top">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                                          </svg>
+                                          <span class="inline-block ml-1">Forgot Password</span>
+                                        </button>
+
+                                          <div class="col-md-12">
+                                            <!-- <a  href="#"> Signup Using Google</a>  -->
+        
+                                             <!-- <a class="btn btn-lg btn-google btn-outline justify-content-center" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&include_granted_scopes=true&state=1234567890&redirect_uri=http://127.0.0.1:8000/result&client_id=296287171867-ioqtsh35387i6tsv37dbo0te2d965tbt.apps.googleusercontent.com">Sign-in using <img src="https://img.icons8.com/color/16/000000/google-logo.png"></a> -->
+                                             <a class="btn btn-sm btn-google btn-outline justify-content-center" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&include_granted_scopes=true&state=1234567890&redirect_uri=http://127.0.0.1:8000/result&client_id=296287171867-ioqtsh35387i6tsv37dbo0te2d965tbt.apps.googleusercontent.com">
+                                              <ul class="list-inline">
+                                                <li class="list-inline-item">Sign-in using</li>
+                                                <li class="list-inline-item"><img src="https://img.icons8.com/color/16/000000/google-logo.png"></li>
+                                              </ul>
+                                              </a>
+        
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="py-5">
+                                  <div class="grid grid-cols-2 gap-1">
+                                    <div class="text-center sm:text-left whitespace-nowrap">
+                                      <a href="/">
+                                        <button class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-200 focus:outline-none focus:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 inline-block align-text-top">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                                          </svg>
+                        
+                                          <span class="inline-block ml-1">Back to Home</span>
+                                        </button>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
