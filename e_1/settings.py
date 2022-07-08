@@ -135,3 +135,9 @@ EMAIL_HOST_USER='coder.kolawat@gmail.com'
 EMAIL_HOST_PASSWORD='rvdzdkmtwgpajmor'
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+
+PAYTM_MERCHANT_ID = 'DIY12386817555501617'
+PAYTM_SECRET_KEY = 'bKMfNxPPf_QdZppa'
+PAYTM_WEBSITE = 'WEBSTAGING'
+PAYTM_CHANNEL_ID = 'WEB'
+PAYTM_INDUSTRY_TYPE_ID = 'Retail'

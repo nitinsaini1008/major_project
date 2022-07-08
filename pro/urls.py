@@ -23,6 +23,7 @@ urlpatterns = [
     path('result',views.result,name='result'),
     path("accounts/login/", views.sign_in, name='sign_in'),
     path("clear_cart/", views.clear_cart, name="clear_cart"),
+    path('callback/', views.callback, name="callback"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

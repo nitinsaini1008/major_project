@@ -14,7 +14,7 @@
         type = "image/x-icon">
 
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">MyE-commerce</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
     </form>
   </div>
 </nav>
-<ul class="list-unstyled">
+<!-- <ul class="list-unstyled">
     {% for i in f %}
   <li class="media border" style="margin-top: 15px;">
     <img src="media/{{i.photo}}" class="mr-3" alt="..." height="200" width="300">    
@@ -68,9 +68,32 @@
       </div>
   </li>
   {% endfor %}
-</ul>
+</ul> -->
 
 
+<div>
+  <ul class="list-unstyled">
+      {% for i in f %}
+    <li class="media border">
+      <!-- <img src="media/{{i.item.photo}}" class="mr-3" alt="..." height="200" width="300">     -->
+      <div>
+        <img style="width: 100mm; height: 67mm;" src="media/{{i.photo}}" class="card-img-top" alt="...">
+      </div>
+      <div class="card-body">
+          <h5 class="card-title">{{i.name}}</h5>
+          <p class="card-text">{{i.desc}}</p>
+          <!-- <h1 class="card-text">*{{i.total_item}}.</h1> -->
+          <h1 class="card-text">Rs.={{i.price}}</h1>
+          <a href="/buy?id={{i.id}}" class="btn btn-primary">Add to cart</a>
+          <a href="/details/{{i.id}}" class="btn btn-primary">View</a>
+        </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+
+</div>
+{% include 'footer.html' %}
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
