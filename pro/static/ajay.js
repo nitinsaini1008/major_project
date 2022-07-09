@@ -11,9 +11,11 @@ function initAll() {
 }
 var otp='gg'
 function ff1(event) {
+	event.preventDefault();
 	console.log("form---------");
 	// e.preventDefault();
-	event.preventDefault();
+	
+	console.log("form---------");
 	
 
 	var hh1=document.getElementById('hh1');
